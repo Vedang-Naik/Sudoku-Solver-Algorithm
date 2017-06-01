@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>The Sudoku Solver</title>
+        
+        <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <script src="sudoku_solver.js"></script>
+        <link href='//fonts.googleapis.com/css?family=Aclonica' rel='stylesheet'>
+        <link rel="stylesheet" href="sudoku_solver.css">
+        
+    </head>
+    <body>
+        <div id="header"><h1>The Sudoku Solver</h1></div>
+        <div id="information-bar">
+            <p><h3>Instructions</h3></p>
+            <p>Input your sudoku into the grid below and press the 'Solve' button. If you wish to clear the board, press the 'Clear' button.</p>
+            <p>The alogirthm behind this page uses two methods: elimination, where cells with only one possibility 
+            are filled in, and brute-force, where the possibilities of all cells are tried in turn. The algorithm will first try to use the elimination method. 
+            If it works, your sudoku will be solved almost instantaneosuly. However, if it fails, it will resort to the brute-force method. You will know 
+            that this has happened when the page appears to freeze after clicking the 'Solve' Button.</p>
+            <p>At this stage, please wait for around 6 to 10 minutes for the brute-force algorithm to solve the board. Bear in mind that this will take place 
+            a heavy load on your CPU. If you wish to stop the brute-force algorithm before it has finished for whatever reason, please force-shut Chrome via the Task Manager.
+            It is recommended to not have other tabs or programs running while the algorithm is working.</p>
+        </div>
+        <div id="holder">
+            <table id="board">
+                <colgroup>
+                    <col id="col1" span="1">
+                    <col id="col2" span="1">
+                    <col id="col3" span="1">
+                    <col id="col4" span="1">
+                    <col id="col5" span="1">
+                    <col id="col6" span="1">
+                    <col id="col7" span="1">
+                    <col id="col8" span="1">
+                    <col id="col9" span="1">
+                </colgroup>
+                <tr id="row1">
+                    <td><input class="box1" type="number"/></td>
+                    <td><input class="box1" type="number"/></td>
+                    <td class="column3"><input class="box1" type="number"/></td>
+                    <td class="column4"><input class="box2" type="number"/></td>
+                    <td><input class="box2" type="number"/></td>
+                    <td class="column6"><input class="box2" type="number"/></td>
+                    <td class="column7"><input class="box3" type="number"/></td>
+                    <td><input class="box3" type="number"/></td>
+                    <td><input class="box3" type="number"/></td>
+                </tr>
+                <tr id="row2">
+                    <td><input class="box1" type="number"/></td>
+                    <td><input class="box1" type="number"/></td>
+                    <td class="column3"><input class="box1" type="number"/></td>
+                    <td class="column4"><input class="box2" type="number"/></td>
+                    <td><input class="box2" type="number"/></td>
+                    <td class="column6"><input class="box2" type="number"/></td>
+                    <td class="column7"><input class="box3" type="number"/></td>
+                    <td><input class="box3" type="number"/></td>
+                    <td><input class="box3" type="number"/></td>
+                </tr>
+                <tr id="row3">
+                    <td><input class="box1" type="number"/></td>
+                    <td><input class="box1" type="number"/></td>
+                    <td class="column3"><input class="box1" type="number"/></td>
+                    <td class="column4"><input class="box2" type="number"/></td>
+                    <td><input class="box2" type="number"/></td>
+                    <td class="column6"><input class="box2" type="number"/></td>
+                    <td class="column7"><input class="box3" type="number"/></td>
+                    <td><input class="box3" type="number"/></td>
+                    <td><input class="box3" type="number"/></td>
+                </tr>
+                <tr id="row4">
+                    <td><input class="box4" type="number"/></td>
+                    <td><input class="box4" type="number"/></td>
+                    <td class="column3"><input class="box4" type="number"/></td>
+                    <td class="column4"><input class="box5" type="number"/></td>
+                    <td><input class="box5" type="number"/></td>
+                    <td class="column6"><input class="box5" type="number"/></td>
+                    <td class="column7"><input class="box6" type="number"/></td>
+                    <td><input class="box6" type="number"/></td>
+                    <td><input class="box6" type="number"/></td>
+                </tr>
+                <tr id="row5">
+                    <td><input class="box4" type="number"/></td>
+                    <td><input class="box4" type="number"/></td>
+                    <td class="column3"><input class="box4" type="number"/></td>
+                    <td class="column4"><input class="box5" type="number"/></td>
+                    <td><input class="box5" type="number"/></td>
+                    <td class="column6"><input class="box5" type="number"/></td>
+                    <td class="column7"><input class="box6" type="number"/></td>
+                    <td><input class="box6" type="number"/></td>
+                    <td><input class="box6" type="number"/></td>
+                </tr>
+                <tr id="row6">
+                    <td><input class="box4" type="number"/></td>
+                    <td><input class="box4" type="number"/></td>
+                    <td class="column3"><input class="box4" type="number"/></td>
+                    <td class="column4"><input class="box5" type="number"/></td>
+                    <td><input class="box5" type="number"/></td>
+                    <td class="column6"><input class="box5" type="number"/></td>
+                    <td class="column7"><input class="box6" type="number"/></td>
+                    <td><input class="box6" type="number"/></td>
+                    <td><input class="box6" type="number"/></td>
+                </tr>
+                <tr id="row7">
+                    <td><input class="box7" type="number"/></td>
+                    <td><input class="box7" type="number"/></td>
+                    <td class="column3"><input class="box7" type="number"/></td>
+                    <td class="column4"><input class="box8" type="number"/></td>
+                    <td><input class="box8" type="number"/></td>
+                    <td class="column6"><input class="box8" type="number"/></td>
+                    <td class="column7"><input class="box9" type="number"/></td>
+                    <td><input class="box9" type="number"/></td>
+                    <td><input class="box9" type="number"/></td>
+                </tr>
+                <tr id="row8">
+                    <td><input class="box7" type="number"/></td>
+                    <td><input class="box7" type="number"/></td>
+                    <td class="column3"><input class="box7" type="number"/></td>
+                    <td class="column4"><input class="box8" type="number"/></td>
+                    <td><input class="box8" type="number"/></td>
+                    <td class="column6"><input class="box8" type="number"/></td>
+                    <td class="column7"><input class="box9" type="number"/></td>
+                    <td><input class="box9" type="number"/></td>
+                    <td><input class="box9" type="number"/></td>
+                </tr>
+                <tr id="row9">
+                    <td><input class="box7" type="number"/></td>
+                    <td><input class="box7" type="number"/></td>
+                    <td class="column3"><input class="box7" type="number"/></td>
+                    <td class="column4"><input class="box8" type="number"/></td>
+                    <td><input class="box8" type="number"/></td>
+                    <td class="column6"><input class="box8" type="number"/></td>
+                    <td class="column7"><input class="box9" type="number"/></td>
+                    <td><input class="box9" type="number"/></td>
+                    <td><input class="box9" type="number"/></td>
+                </tr>
+            </table>
+        </div>
+        <div id="controls">
+            <button id="solve" type="submit">Solve</button>
+            <button id="clear" type="submit">Clear</button>
+        </div>
+        <div id="notifications-bar">
+            <p id="notifications"></p>
+            <p id="iterations"></p>
+        </div>
+    </body>
+</html>

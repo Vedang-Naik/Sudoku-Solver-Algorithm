@@ -1,0 +1,84 @@
+#header {
+    margin: auto;
+    font-family: "Aclonica";
+    font-size: 22px;
+    text-align: center;
+}
+
+#information-bar {
+    margin: auto;
+    width: 910px;
+    text-align: center;
+    font-family: "Verdana", "Geneva";
+    font-size: 14px;
+}
+
+#holder {
+    margin: auto;
+    width: 456px;
+    height: 475px;
+    border: 1px solid black;
+}
+
+#board {border: 6px solid black;}
+            
+td input {
+    width: 40px;
+    height: 40px;
+    text-align: center;
+}
+
+input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer-spin-button { 
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0;
+}
+
+#row3 td, #row6 td {border-bottom: 3px solid black;}
+#row4 td, #row7 td {border-top: 3px solid black;}
+.column3, .column6 {border-right: 3px solid black;}
+.column4, .column7 {border-left: 3px solid black;}
+
+#controls {
+    margin: auto;
+    text-align: center;
+    padding: 10px;
+}
+
+#controls #solve {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 13px;
+    width: 300px;
+    text-align: center;
+    font-size: 16px;
+    -webkit-border-radius: 10px;
+}
+
+#controls #clear {
+    background-color: #F5B522;
+    border: none;
+    color: white;
+    padding: 13px;
+    width: 156px;
+    text-align: center;
+    font-size: 16px;
+    -webkit-border-radius: 10px;
+}
+
+#notifications-bar {
+    margin: auto;
+    width: 456px;
+}
+
+#notifications {
+    text-align: center;
+    font-family: "Verdana", "Geneva";
+}
+
+#iterations {
+    text-align: center;
+    font-family: "Verdana", "Geneva";
+}
